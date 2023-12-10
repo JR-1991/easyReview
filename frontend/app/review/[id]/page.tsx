@@ -37,6 +37,7 @@ export default async function Review(
     // If a field_id is provided, set it in the store
     if ("field_id" in searchParams) {
         field = await fetchFieldData(
+            // @ts-ignore
             searchParams.field_id, BACKEND_URL
         )
     }
