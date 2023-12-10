@@ -5,7 +5,7 @@
 
 ## Build and run the project
 
-In order to EasyReview, you first need to create a `.env` file in the root directory of the project. The file should contain the following variables:
+In order to use EasyReview, you first need to create a `.env` file in the root directory of the project. The file should contain the following variables:
 
 ```bash
 # PostgreSQL
