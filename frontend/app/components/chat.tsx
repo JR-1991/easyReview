@@ -1,8 +1,6 @@
 import cardStyle from "../utils/styles"
 
-export default function Chat(
-
-) {
+export default function Chat() {
     return (
         <div className={cardStyle + "flex flex-col overflow-auto break-words stats stats-horizontal stat rounded-xl"}>
             <div className="text-lg stat-value">Chat</div>

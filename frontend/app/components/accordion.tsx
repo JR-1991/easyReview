@@ -4,7 +4,14 @@ import { capitalizeFirstLetter } from "../utils/stringfuns";
 import { VscSymbolField } from "react-icons/vsc";
 import cardStyle from "../utils/styles";
 
-export default function Accordion({ name, children }: { name: string, children: React.ReactNode }) {
+export default function Accordion(
+    {
+        name,
+        children
+    }: {
+        name: string,
+        children: React.ReactNode
+    }) {
     return (
         <div className={cardStyle.replace("shadow-md", " ") + "mb-4 px-2 bg-white collapse-arrow collapse"}>
             <input type="checkbox" />

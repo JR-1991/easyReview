@@ -8,7 +8,14 @@ import { usePathname, useRouter } from "next/navigation";
 import cardStyle from "../utils/styles";
 
 
-export default function Suggest({ field }: { field: Field }) {
+export default function Suggest(
+    {
+        field
+    }: {
+        field: Field | null
+    }) {
+
+    if (field === null) return null
 
     // States
     const [changes, setChanges] = useState<string>("")

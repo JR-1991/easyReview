@@ -1,5 +1,11 @@
 export default function Status(
-    { accepted, show = true }: { accepted: boolean, show: boolean }
+    {
+        accepted,
+        show = true
+    }: {
+        accepted: boolean,
+        show: boolean
+    }
 ) {
 
     return (
