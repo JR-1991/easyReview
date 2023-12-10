@@ -28,11 +28,10 @@ CELERY_URL=redis://:supersecretpassword@redis:6379/0
 Then, you can build and run the project using the following command:
 
 ```bash
-docker compose up -d --build
+docker compose up -d
 ```
 
-> [!TIP]
-> If you do not want to run EasyReview in daemon mode, you can remove the `-d` flag.
+Once setup, you can access the EasyReview web interface at `http://localhost:3000` and the API at `http://localhost:8000/`. The REST API documentation is available at `http://localhost:8000/api/`.
 
 ## Adding datasets for review
 
