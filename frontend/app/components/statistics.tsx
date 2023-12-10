@@ -1,7 +1,8 @@
 "use client";
 
+// @ts-ignore
 import CryptoJS from "crypto-js";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import useReviewStore from "../stores/reviewstore";
 import { fetchProgress } from "../utils/statsloder";
 import cardStyle from "../utils/styles";
@@ -21,11 +22,15 @@ export default function Statistics(
     }
 ) {
 
+    // States
+    const progress = useReviewStore((state) => state.progress)
+    const secretPass = useReviewStore((state) => state.secretPass)
+
     // Functions
     const encryptData = (id: string) => {
         let token = CryptoJS.AES.encrypt(
             id,
-            "XkhZG4fW2t2W"
+            secretPass,
         ).toString()
 
         let cleanedToken = token.replace(/\+/g, 'xMl3Jk').replace('/', 'Por21Ld').replace('=', 'Ml32');
@@ -38,8 +43,6 @@ export default function Statistics(
         return url + "/?token=" + encryptData(reviewId)
     }
 
-    // States
-    const progress = useReviewStore((state) => state.progress)
 
     // Actions
     const updateProgress = useReviewStore((state) => state.updateProgress)
