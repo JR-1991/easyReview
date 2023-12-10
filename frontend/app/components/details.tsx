@@ -3,7 +3,6 @@
 import { Field } from "../types";
 import { stripHtml } from "string-strip-html";
 import { cleanAndCapitalize } from "../utils/stringfuns";
-import { time } from "console";
 import cardStyle from "../utils/styles";
 
 function FieldHistory(

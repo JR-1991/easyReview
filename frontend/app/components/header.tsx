@@ -1,15 +1,8 @@
 "use client";
 
-import { useState } from "react";
 import { VscEye } from "react-icons/vsc";
-import useReviewStore from "../stores/reviewstore";
 
 export default function Header() {
-
-    // States
-    const [checked, setChecked] = useState<boolean>(true)
-    const updateHideComplete = useReviewStore((state) => state.updateHideComplete)
-
     return (
         <header className="top-0 flex flex-row justify-between h-16 bg-opacity-0 navbar">
             <div className="flex flex-row place-content-between">
