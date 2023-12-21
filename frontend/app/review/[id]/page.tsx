@@ -6,8 +6,11 @@ import Statistics from "@/app/components/statistics"
 import Suggest from "@/app/components/suggest"
 import { Dataset, Field } from "@/app/types"
 import { fetchFieldData } from "@/app/utils/loader"
+import backendRequest from "@/app/utils/requests"
 
 const BACKEND_URL = 'http://easyreview-backend:8000/api/field/'
+
+const DJANGO_HOST = process.env.DJANGO_HOST || "localhost"
 
 export default async function Review(
     {
@@ -20,16 +23,8 @@ export default async function Review(
 
 
     // Get the dataset
-    const res = await fetch(
-        `http://easyreview-backend:8000/api/reviews/${params.id}/`,
-        {
-            method: "GET",
-            next: {
-                revalidate: 0
-            }
-        }
-    )
-
+    const url = `http://easyreview-backend:8000/api/reviews/${params.id}/`
+    const res = await backendRequest(url, "GET")
     const dataset: Dataset = await res.json()
 
     let field: Field | null = null

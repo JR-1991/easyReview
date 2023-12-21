@@ -1,12 +1,16 @@
-const BACKEND_URL = 'http://localhost:8000/api/field/update/'
-
+import backendRequest from "./requests"
 
 export async function updateField(payload: Object, field_id: string) {
-    // Simple POST request with a JSON body using fetch
-    const requestOptions = {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-    };
-    fetch(`${BACKEND_URL}${field_id}/`, requestOptions)
+    const DJANGO_HOST = process.env.NEXT_PUBLIC_DJANGO_HOST
+    const DJANGO_PORT = process.env.NEXT_PUBLIC_DJANGO_PORT
+    const BACKEND_URL = `http://${DJANGO_HOST}:${DJANGO_PORT}`
+
+
+    const url = `${BACKEND_URL}/api/field/update/${field_id}/`
+    const res = await backendRequest(url, 'PUT', JSON.stringify(payload))
+
+    // Throw error if response is not ok
+    if (!res.ok) {
+        throw new Error(res.statusText)
+    }
 }

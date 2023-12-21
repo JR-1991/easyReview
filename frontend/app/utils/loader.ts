@@ -1,3 +1,5 @@
+import backendRequest from "./requests"
+
 export interface ReviewQuery {
     message: string,
     review_id: string,
@@ -10,7 +12,8 @@ export async function fetchFieldData(id: string, BACKEND_URL: string) {
         BACKEND_URL = BACKEND_URL + '/'
     }
 
-    const res = await fetch(`${BACKEND_URL}${id}/`)
+    const url = `${BACKEND_URL}${id}/`
+    const res = await backendRequest(url, 'GET')
     return await res.json()
 }
 
@@ -31,26 +34,16 @@ export default async function getDataset(
         BACKEND_URL = BACKEND_URL + '/'
     }
 
-
-    const res = await fetch(
-        "http://easyreviw-backend:8000/api/dataset/fetch/",
+    const url = "http://easyreview-backend:8000/api/dataset/fetch/"
+    const payload = JSON.stringify(
         {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(
-                {
-                    site_url: site_url,
-                    doi: doi,
-                    api_token: api_token
-                }
-            ),
-            next: {
-                revalidate: 0
-            }
-        });
+            site_url: site_url,
+            doi: doi,
+            api_token: api_token
+        }
+    )
+
+    const res = await backendRequest(url, 'POST', payload)
 
     if (res.status !== 200) {
         throw new Error(await res.text())
