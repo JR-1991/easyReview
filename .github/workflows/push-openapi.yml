@@ -21,7 +21,7 @@ jobs:
       - name: Generate OpenAPI Specs
         run: |
           python ./backend/manage.py spectacular --file easyreview.yaml
-      - name: Pushes test file
+      - name: Push OpenAPI Specs
         uses: dmnemec/copy_file_to_another_repo_action@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
