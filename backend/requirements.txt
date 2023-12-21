@@ -1,6 +1,6 @@
 pyyaml
 uritemplate==4.1.1
-celery==5.0.2
+celery==5.2.2
 Django==3.2
 psycopg2-binary==2.8.5
 redis==3.5.3
