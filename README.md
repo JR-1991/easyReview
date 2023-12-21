@@ -23,6 +23,12 @@ BROKER_URL=redis://:supersecretpassword@redis:6379/0
 REDIS_CHANNEL_URL=redis://:supersecretpassword@redis:6379/1
 CELERY_URL=redis://:supersecretpassword@redis:6379/0
 
+# Django
+NEXT_PUBLIC_DJANGO_HOST=localhost # Required for client side API calls
+NEXT_PUBLIC_DJANGO_PORT=8000 # Required for client side API calls
+NEXT_PUBLIC_DJANGO_SUPERUSER_PASSWORD=supersecretpassword
+NEXT_PUBLIC_DJANGO_SUPERUSER_USERNAME=admin
+NEXT_PUBLIC_DJANGO_SUPERUSER_EMAIL=admin@admin.com
 ```
 
 Then, you can build and run the project using the following command:
@@ -32,6 +38,18 @@ docker compose up -d
 ```
 
 Once setup, you can access the EasyReview web interface at `http://localhost:3000` and the API at `http://localhost:8000/`. The REST API documentation is available at `http://localhost:8000/api/`.
+
+### Creating a super user
+
+In order to create a super user for the backend, you can use the following command:
+
+```bash
+docker exec -it easyreview_backend python manage.py createsuperuser
+```
+
+Follow the instructions to create a super user.
+
+### 
 
 ## Adding datasets for review
 
