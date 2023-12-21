@@ -6,7 +6,7 @@ import { VscCheck, VscChromeClose, VscEdit, VscExport, VscFeedback } from "react
 import { stripHtml } from "string-strip-html";
 import useReviewStore from "../stores/reviewstore";
 import { Field as FieldType } from "../types";
-import { fetchProgress } from "../utils/statsloder";
+import { fetchProgress } from "../utils/statsloader";
 import { updateField } from "../utils/updaters";
 import Context from "./contextmenu";
 
