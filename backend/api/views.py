@@ -31,7 +31,7 @@ def getReviewsByDatasetDOI(request, doi):
 
 @extend_schema(
     operation_id="getReviewsByReviewer",
-    responses={200: ReviewSerializer},
+    responses={200: ReviewSerializer(many=True)},
 )
 @api_view(["GET"])
 def getReviewByReviewer(request, reviewerid):
@@ -49,6 +49,7 @@ def getReviewByID(request, id: str):
 
 @extend_schema(
     operation_id="getReviews",
+    responses={200: ReviewerSerializer(many=True)},
 )
 @api_view(["GET"])
 def getReviews(request):
@@ -102,6 +103,7 @@ def updateField(request, id):
 # ! Reviewers views
 @extend_schema(
     operation_id="getReviewers",
+    responses={200: ReviewerSerializer(many=True)},
 )
 @api_view(["GET"])
 def getReviewers(request):
@@ -118,7 +120,7 @@ def getReviewerById(request, id):
 
 
 @extend_schema(
-    operation_id="getReviewer",
+    operation_id="addReviewer",
     request=ReviewerSerializer,
 )
 @api_view(["POST"])
