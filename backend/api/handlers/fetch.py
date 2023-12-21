@@ -32,9 +32,11 @@ def fetch_dataset(request):
     """
 
     # Extract relevant information from the request
-    site_url = request.data.get("site_url")
-    doi = request.data.get("doi")
-    api_token = request.data.get("api_token")
+    site_url = request.query_params.get("site_url")
+    doi = request.query_params.get("doi")
+    api_token = request.query_params.get("api_token")
+
+    print(request.query_params)
 
     if site_url is None or doi is None:
         # Check whether the request contains the necessary information
