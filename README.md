@@ -80,3 +80,7 @@ curl --json '{
         }' \
     http://myhost:8000/api/dataset/fetch/
 ```
+
+## Review automization
+
+EasyReview offers a REST-API that lets you access, update, and manage the reviews of an instance easily. Alternatively, you can use a Python library available at https://github.com/JR-1991/python-easyreview/tree/main to interact with EasyReview's backend. The library currently covers all endpoints, but a dedicated validation interface to ingest custom functions will be added soon!
