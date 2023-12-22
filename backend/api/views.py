@@ -49,7 +49,7 @@ def getReviewByID(request, id: str):
 
 @extend_schema(
     operation_id="getReviews",
-    responses={200: ReviewerSerializer(many=True)},
+    responses={200: ReviewSerializer(many=True)},
 )
 @api_view(["GET"])
 def getReviews(request):
