@@ -36,8 +36,6 @@ def fetch_dataset(request):
     doi = request.query_params.get("doi")
     api_token = request.query_params.get("api_token")
 
-    print(request.query_params)
-
     if site_url is None or doi is None:
         # Check whether the request contains the necessary information
         return Response(
@@ -48,10 +46,7 @@ def fetch_dataset(request):
     # First, check if this dataset is already present in the database
     if Review.objects.filter(doi=doi).exists() is True:
         return Response(
-            {
-                "message": f"The dataset '{doi}' is already present in the database.",
-                "review_id": Review.objects.get(doi=doi).id,
-            },
+            Review.objects.filter(doi=doi),
             status=status.HTTP_200_OK,
         )
 
@@ -79,10 +74,7 @@ def fetch_dataset(request):
         _process_metadatablock(block, metadatablock)
 
     return Response(
-        {
-            "review_id": Review.objects.get(doi=doi).id,
-            "message": f"Successfully added the dataset '{Review.objects.get(doi=doi).id}' to the database.",
-        },
+        Review.objects.get(doi=doi),
         status=status.HTTP_200_OK,
     )
 

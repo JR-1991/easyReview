@@ -13,6 +13,7 @@ from .handlers.fetch import (
 @extend_schema(
     operation_id="fetchDatasetFromDOI",
     parameters=DATASET_FETCH_PARAMS,
+    responses={200: ReviewSerializer},
 )
 @api_view(["POST"])
 def fetchDatasetFromDOI(request):
