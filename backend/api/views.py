@@ -1,6 +1,11 @@
 from drf_spectacular.utils import extend_schema
 from rest_framework.decorators import api_view
-from .handlers.serializers import ReviewSerializer, FieldSerializer, ReviewerSerializer
+from .handlers.serializers import (
+    FileSerializer,
+    ReviewSerializer,
+    FieldSerializer,
+    ReviewerSerializer,
+)
 
 from . import handlers
 
@@ -127,3 +132,40 @@ def getReviewerById(request, id):
 @api_view(["POST"])
 def addReviewer(request):
     return handlers.reviewer.add_reviewer(request)
+
+
+# ! File views
+@extend_schema(
+    operation_id="getFiles",
+    responses={200: FileSerializer(many=True)},
+)
+@api_view(["GET"])
+def getFiles(request):
+    return handlers.files.all_files(request)
+
+
+@extend_schema(
+    operation_id="getFileById",
+    responses={200: FileSerializer},
+)
+@api_view(["GET"])
+def getFileById(request, id):
+    return handlers.files.file_by_id(request, id)
+
+
+@extend_schema(
+    operation_id="getFilesByReviewId",
+    responses={200: FileSerializer(many=True)},
+)
+@api_view(["GET"])
+def getFilesByReviewId(request, id):
+    return handlers.files.files_by_review_id(request, id)
+
+
+@extend_schema(
+    operation_id="addFile",
+    request=FileSerializer,
+)
+@api_view(["POST"])
+def addFile(request):
+    return handlers.files.add_file(request)
