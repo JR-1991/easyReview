@@ -19,6 +19,10 @@ def file_by_id(request, id):
 
 def files_by_review_id(request, id):
     files = File.objects.get(review=id)
+
+    if not isinstance(files, list):
+        files = [files]
+
     serializer = FileSerializer(files, many=True)
     return Response(serializer.data)
 
