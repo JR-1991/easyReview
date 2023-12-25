@@ -4,11 +4,8 @@ celery==5.2.2
 Django==3.2.23
 psycopg2-binary==2.8.5
 redis==3.5.3
-pydantic==1.9.0
 djantic==0.7.0
 djangorestframework==3.14.0
-validators==0.20.0
 drf-spectacular==0.24.2
 django-cors-headers==3.13.0
-nob==0.8.2
 git+https://github.com/gdcc/easyDataverse.git
