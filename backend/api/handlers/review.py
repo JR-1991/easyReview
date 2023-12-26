@@ -1,3 +1,4 @@
+from django.core.exceptions import FieldDoesNotExist
 from rest_framework import status
 from rest_framework.response import Response
 from reviews.models import Review
@@ -80,6 +81,27 @@ def get_field_count(request, review_id):
         {
             "field_count": field_count,
             "accpected_count": accepted_fields,
+        },
+        status=status.HTTP_200_OK,
+    )
+
+
+def update_review(request, id):
+    review = Review.objects.filter(pk=id)
+
+    try:
+        review.update(**request.data)
+    except FieldDoesNotExist as e:
+        return Response(
+            {
+                "message": f"Review update failed - {str(e)}",
+            },
+            status=status.HTTP_400_BAD_REQUEST,
+        )
+
+    return Response(
+        {
+            "message": "Review updated successfully",
         },
         status=status.HTTP_200_OK,
     )

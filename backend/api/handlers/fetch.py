@@ -45,8 +45,9 @@ def fetch_dataset(request):
 
     # First, check if this dataset is already present in the database
     if Review.objects.filter(doi=doi).exists() is True:
+        serializer = ReviewSerializer(Review.objects.get(doi=doi))
         return Response(
-            Review.objects.filter(doi=doi),
+            serializer.data,
             status=status.HTTP_200_OK,
         )
 
@@ -73,8 +74,9 @@ def fetch_dataset(request):
 
         _process_metadatablock(block, metadatablock)
 
+    serializer = ReviewSerializer(review)
     return Response(
-        Review.objects.get(doi=doi),
+        serializer.data,
         status=status.HTTP_200_OK,
     )
 

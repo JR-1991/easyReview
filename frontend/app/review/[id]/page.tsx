@@ -8,10 +8,6 @@ import { Dataset, Field } from "@/app/types"
 import { fetchFieldData } from "@/app/utils/loader"
 import backendRequest from "@/app/utils/requests"
 
-const BACKEND_URL = 'http://easyreview-backend:8000/api/field/'
-
-const DJANGO_HOST = process.env.DJANGO_HOST || "localhost"
-
 export default async function Review(
     {
         params,
@@ -23,7 +19,7 @@ export default async function Review(
 
 
     // Get the dataset
-    const url = `http://easyreview-backend:8000/api/reviews/${params.id}/`
+    const url = `http://easyreview-backend:8000/api/review/${params.id}/`
     const res = await backendRequest(url, "GET")
     const dataset: Dataset = await res.json()
 
@@ -31,9 +27,10 @@ export default async function Review(
 
     // If a field_id is provided, set it in the store
     if ("field_id" in searchParams) {
+        const fieldURL = `http://easyreview-backend:8000/api/field/`
         field = await fetchFieldData(
             // @ts-ignore
-            searchParams.field_id, BACKEND_URL
+            searchParams.field_id, fieldURL
         )
     }
 

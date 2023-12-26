@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from reviews.models import Review, Reviewer, Metadatablock, Field, Compound
+from reviews.models import Review, Reviewer, Metadatablock, Field, Compound, File
 
 
 class FieldSerializer(serializers.ModelSerializer):
@@ -28,8 +28,16 @@ class MetadatablockSerializer(serializers.ModelSerializer):
         ordering = ["name", "description", "primitives", "compounds"]
 
 
+class FileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = File
+        fields = "__all__"
+        ordering = ["name", "description"]
+
+
 class ReviewSerializer(serializers.ModelSerializer):
     metadatablocks = MetadatablockSerializer(read_only=True, many=True)
+    files = FileSerializer(read_only=True, many=True)
 
     class Meta:
         model = Review

@@ -92,3 +92,15 @@ class Compound(models.Model):
 
     def __str__(self) -> str:
         return f"{self.metadatablock} - Compound: {self.name}"
+
+
+class File(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+
+    review = models.ForeignKey(Review, on_delete=models.CASCADE, related_name="files")
+
+    name = models.CharField(max_length=100)
+    description = models.TextField(blank=True)
+    accepted = models.BooleanField(default=False)
+    chat = models.JSONField(default=dict, blank=True)
+    field_type = models.CharField(default="file", max_length=100, editable=False)
