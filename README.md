@@ -39,18 +39,6 @@ docker compose up -d
 
 Once setup, you can access the EasyReview web interface at `http://localhost:3000` and the API at `http://localhost:8000/`. The REST API documentation is available at `http://localhost:8000/api/`.
 
-### Creating a super user
-
-In order to create a super user for the backend, you can use the following command:
-
-```bash
-docker exec -it easyreview_backend python manage.py createsuperuser
-```
-
-Follow the instructions to create a super user.
-
-### 
-
 ## Adding datasets for review
 
 Datasets can be added either via the external tools URL schema or via the EasyReviews REST-API. The following sections describe both options.
