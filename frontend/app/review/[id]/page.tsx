@@ -19,7 +19,7 @@ export default async function Review(
 
 
     // Get the dataset
-    const url = `http://easyreview-backend:8000/api/review/${params.id}/`
+    const url = `http://easyreview-backend:8000/api/reviews/${params.id}/`
     const res = await backendRequest(url, "GET")
     const dataset: Dataset = await res.json()
 
@@ -27,7 +27,7 @@ export default async function Review(
 
     // If a field_id is provided, set it in the store
     if ("field_id" in searchParams) {
-        const fieldURL = `http://easyreview-backend:8000/api/field/`
+        const fieldURL = `http://easyreview-backend:8000/api/fields/`
         field = await fetchFieldData(
             // @ts-ignore
             searchParams.field_id, fieldURL

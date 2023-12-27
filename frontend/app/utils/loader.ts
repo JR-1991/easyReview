@@ -12,7 +12,7 @@ export async function fetchFieldData(id: string, BACKEND_URL: string) {
         BACKEND_URL = BACKEND_URL + '/'
     }
 
-    const url = `${BACKEND_URL}${id}/`
+    const url = `${BACKEND_URL}${id}`
     const res = await backendRequest(url, 'GET')
     return await res.json()
 }
@@ -34,7 +34,7 @@ export default async function getDataset(
         BACKEND_URL = BACKEND_URL + '/'
     }
 
-    const url = "http://easyreview-backend:8000/api/dataset/fetch/"
+    const url = "http://easyreview-backend:8000/api/reviews/fetch/"
     const payload = JSON.stringify(
         {
             site_url: site_url,

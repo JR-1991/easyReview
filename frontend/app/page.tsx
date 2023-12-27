@@ -2,7 +2,7 @@ import CryptoJS from "crypto-js";
 import { redirect } from 'next/navigation';
 import getDataset, { ReviewQuery } from "./utils/loader";
 
-const BACKEND_URL = 'http://easyreview-backend:8000/api/dataset/fetch/'
+const BACKEND_URL = 'http://easyreview-backend:8000/api/reviews/fetch/'
 
 interface queryParams {
   siteUrl: string,
