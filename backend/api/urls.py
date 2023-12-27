@@ -13,22 +13,23 @@ urlpatterns = [
         SpectacularSwaggerView.as_view(url_name="schema"),
         name="swagger-ui",
     ),
-    path("dataset/fetch/", views.fetchDatasetFromDOI),
-    path("review/list/", views.getReviews),
-    path("review/<str:id>/", views.deleteReview),
-    path("review/<str:id>/", views.updateReview),
-    path("review/<str:id>/stats/", views.getFieldCount),
-    path("review/<str:id>/", views.getReviewByID),
-    path("review/<str:id>/files/", views.getFilesByReviewId),
-    path("review/doi/<str:doi>/", views.getReviewsByDatasetDOI),
-    path("review/reviewer/<str:reviewerid>/", views.getReviewByReviewer),
-    path("review/", views.addReview),
-    path("reviewers/list/", views.getReviewers),
-    path("reviewers/<str:id>/", views.getReviewerById),
-    path("reviewers/", views.addReviewer),
-    path("files/list/", views.getFiles),
-    path("files/<str:id>/", views.getFileById),
-    path("files/", views.addFile),
-    path("field/<str:id>/", views.getFieldByID),
-    path("field/<str:id>/", views.updateField),
+    #
+    # Reviews
+    path("reviews/", views.ReviewListCreate.as_view()),
+    path("reviews/<str:pk>/", views.ReviewDetails.as_view()),
+    path("reviews/fetch/", views.fetchDatasetFromDOI),
+    path("reviews/<str:id>/stats/", views.getFieldCount),
+    path("reviews/<str:id>/files/", views.getFilesByReviewId),
+    path("reviews/doi/<str:doi>/", views.getReviewsByDatasetDOI),
+    path("reviews/reviewer/<str:id>/", views.getReviewByReviewer),
+    #
+    # Reviewers
+    path("reviewers/", views.ReviewerListCreate.as_view()),
+    path("reviewers/<str:pk>", views.ReviewerDetails.as_view()),
+    #
+    # Files
+    path("files/<str:pk>", views.FileDetails.as_view()),
+    #
+    # Fields
+    path("fields/<str:pk>", views.FieldDetails.as_view()),
 ]
