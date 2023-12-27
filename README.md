@@ -48,7 +48,7 @@ Datasets can be added either via the external tools URL schema or via the EasyRe
 The following URL schema can be used to add datasets to EasyReview:
 
 ```bash
-http://myhost:3000/?<str:siteUrl>&<str:apiToken>&<str:datasetPid>
+http://myhost:3000/?siteUrl=<str:siteUrl>&apiToken=<str:apiToken>&datasetPid=<str:datasetPid>
 ```
 
 Parameters:
