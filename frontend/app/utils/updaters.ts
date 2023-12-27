@@ -6,8 +6,8 @@ export async function updateField(payload: Object, field_id: string) {
     const BACKEND_URL = `http://${DJANGO_HOST}:${DJANGO_PORT}`
 
 
-    const url = `${BACKEND_URL}/api/field/${field_id}`
-    const res = await backendRequest(url, 'PUT', JSON.stringify(payload))
+    const url = `${BACKEND_URL}/api/fields/${field_id}`
+    const res = await backendRequest(url, 'PATCH', JSON.stringify(payload))
 
     // Throw error if response is not ok
     if (!res.ok) {
