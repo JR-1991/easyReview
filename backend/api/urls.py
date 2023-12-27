@@ -16,12 +16,12 @@ urlpatterns = [
     #
     # Reviews
     path("reviews/", views.ReviewListCreate.as_view()),
-    path("reviews/<str:pk>/", views.ReviewDetails.as_view()),
+    path("reviews/<str:pk>", views.ReviewDetails.as_view()),
     path("reviews/fetch/", views.fetchDatasetFromDOI),
     path("reviews/<str:id>/stats/", views.getFieldCount),
     path("reviews/<str:id>/files/", views.getFilesByReviewId),
-    path("reviews/doi/<str:doi>/", views.getReviewsByDatasetDOI),
-    path("reviews/reviewer/<str:id>/", views.getReviewByReviewer),
+    path("reviews/doi/<str:doi>", views.getReviewsByDatasetDOI),
+    path("reviews/reviewer/<str:id>", views.getReviewByReviewer),
     #
     # Reviewers
     path("reviewers/", views.ReviewerListCreate.as_view()),

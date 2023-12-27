@@ -24,7 +24,7 @@ export default async function Review(
 
 
     // Get the dataset
-    const url = `http://easyreview-backend:8000/api/reviews/${params.id}/`
+    const url = `http://easyreview-backend:8000/api/reviews/${params.id}`
     const res = await backendRequest(url, "GET")
     const dataset: Dataset | ErrorResponse = await res.json()
 
