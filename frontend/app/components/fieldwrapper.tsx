@@ -44,6 +44,7 @@ export default function FieldWrapper(
     const handleLeftClick = () => {
         router.push(
             `${path}/?field_id=${field.id}&function=suggest`,
+            { scroll: false }
         )
     }
 
