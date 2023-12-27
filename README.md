@@ -41,7 +41,7 @@ Once setup, you can access the EasyReview web interface at `http://localhost:300
 
 ## Adding datasets for review
 
-Datasets can be added either via the external tools URL schema or via the EasyReviews REST-API. The following sections describe both options.
+Datasets can be added either via the external tools URL schema or via EasyReview's REST-API. The following sections describe both options.
 
 ### Via external tools URL schema
 
