@@ -72,12 +72,12 @@ export default function Primitive(
                 }
             >
                 <div className="flex flex-row items-center">
-                    <h2 className="mt-2 mb-1 text-xs opacity-40">{cleanAndCapitalize(field.name)}</h2>
+                    <h2 className="mt-2 mb-1 text-sm opacity-40">{cleanAndCapitalize(field.name)}</h2>
                     {symbol}
                 </div>
                 <div
                     className={
-                        `${hasSuggestions ? suggestStyle : ""} font-light text-sm break-words leading-7 text-justify text-ellipsis`}
+                        `${hasSuggestions ? suggestStyle : ""} font-light text-md break-words leading-7 text-justify text-ellipsis`}
                     data-tip={hasSuggestions ? "This is a suggestion" : ""}
                     onMouseEnter={onMouseOver}
                     onMouseLeave={onMouseOut}

@@ -14,9 +14,9 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="light">
       <body
-        className="min-h-screen pattern-wavy pattern-slate-100 pattern-bg-white pattern-size-32 pattern-opacity-100"
+        className="z-0 min-h-screen pattern-wavy pattern-slate-200 pattern-bg-white pattern-size-32 pattern-opacity-100"
       >
-        <div className="z-50 mx-52">
+        <div className="z-50 mx-40">
           <Header />
           <main>
             {children}
