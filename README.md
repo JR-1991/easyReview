@@ -3,6 +3,10 @@
 > [!IMPORTANT]
 > EasyReview is currently under development and changes to the API and the database schema are likely to happen.
 
+<p align="center">
+    <img src="./assets/easyreview.png" alt="EasyReview screenshot" width="600"/>
+</p>
+
 ## Build and run the project
 
 In order to use EasyReview, you first need to create a `.env` file in the root directory of the project. The file should contain the following variables:
