@@ -1,5 +1,13 @@
-from drf_spectacular.utils import extend_schema
+from drf_spectacular.utils import extend_schema, extend_schema_view
 from rest_framework.decorators import api_view
+from rest_framework.generics import (
+    RetrieveUpdateDestroyAPIView,
+    ListCreateAPIView,
+    RetrieveUpdateAPIView,
+    ListAPIView,
+)
+
+from reviews.models import Review, Field, Reviewer, File
 from .handlers.serializers import (
     FileSerializer,
     ReviewSerializer,
@@ -27,6 +35,40 @@ def fetchDatasetFromDOI(request):
 
 
 # ! Review views
+@extend_schema_view(
+    get=extend_schema(
+        operation_id="getReviewByID",
+        description="Returns a review for a given review ID.",
+    ),
+    put=extend_schema(
+        operation_id="updateReview",
+        description="Updates a review for a given review ID.",
+    ),
+    patch=extend_schema(
+        operation_id="partialUpdateReview",
+        description="Partially updates a review for a given review ID.",
+    ),
+    delete=extend_schema(
+        operation_id="deleteReview",
+        description="Deletes a review from the database.",
+    ),
+)
+class ReviewDetails(RetrieveUpdateDestroyAPIView):
+    serializer_class = ReviewSerializer
+    queryset = Review.objects.all()
+
+
+@extend_schema_view(
+    get=extend_schema(
+        operation_id="getReviews",
+        description="Returns all reviews",
+    ),
+)
+class ReviewListCreate(ListAPIView):
+    serializer_class = ReviewSerializer
+    queryset = Review.objects.all()
+
+
 @extend_schema(
     operation_id="getReviewsByDatasetDOI",
     responses={200: ReviewSerializer},
@@ -48,55 +90,6 @@ def getReviewByReviewer(request, reviewerid):
 
 
 @extend_schema(
-    operation_id="getReviewByID",
-    responses={200: ReviewSerializer},
-    description="Returns a review for a given review ID.",
-)
-@api_view(["GET"])
-def getReviewByID(request, id: str):
-    return handlers.review.review_by_id(request, id)
-
-
-@extend_schema(
-    operation_id="getReviews",
-    responses={200: ReviewSerializer(many=True)},
-    description="Returns all reviews.",
-)
-@api_view(["GET"])
-def getReviews(request):
-    return handlers.review.all_reviews(request)
-
-
-@extend_schema(
-    operation_id="addReview",
-    request=ReviewSerializer,
-    description="Adds a new review to the database.",
-)
-@api_view(["POST"])
-def addReview(request):
-    return handlers.review.add_review(request)
-
-
-@extend_schema(
-    operation_id="updateReview",
-    request=ReviewSerializer,
-    description="Updates a review for a given review ID.",
-)
-@api_view(["PUT"])
-def updateReview(request, id):
-    return handlers.review.update_review(request, id)
-
-
-@extend_schema(
-    operation_id="deleteReview",
-    description="Deletes a review from the database.",
-)
-@api_view(["DELETE"])
-def deleteReview(request, id):
-    return handlers.review.delete_review(request, id)
-
-
-@extend_schema(
     operation_id="getFieldCount",
     description="Returns the number of fields for a given review ID.",
 )
@@ -106,76 +99,88 @@ def getFieldCount(request, id):
 
 
 # ! Field views
-@extend_schema(
-    operation_id="getFieldByID",
-    responses={200: FieldSerializer},
-    description="Returns a field for a given field ID.",
-)
-@api_view(["GET"])
-def getFieldByID(request, id):
-    return handlers.field.field_by_id(request, id)
 
 
-@extend_schema(
-    operation_id="updateField",
-    request=FieldSerializer,
-    description="Updates a field for a given field ID.",
+@extend_schema_view(
+    get=extend_schema(
+        operation_id="getFieldByID",
+        description="Returns a field for a given field ID.",
+    ),
+    put=extend_schema(
+        operation_id="updateField",
+        description="Updates a field for a given field ID.",
+    ),
+    patch=extend_schema(
+        operation_id="partialUpdateField",
+        description="Updates a field for a given field ID.",
+    ),
 )
-@api_view(["PUT"])
-def updateField(request, id):
-    return handlers.field.update_field(request, id)
+class FieldDetails(RetrieveUpdateAPIView):
+    serializer_class = FieldSerializer
+    queryset = Field.objects.all()
 
 
 # ! Reviewers views
-@extend_schema(
-    operation_id="getReviewers",
-    responses={200: ReviewerSerializer(many=True)},
-    description="Returns all reviewers.",
+@extend_schema_view(
+    get=extend_schema(
+        operation_id="getReviewerById",
+        description="Returns a reviewer for a given reviewer ID.",
+    ),
+    put=extend_schema(
+        operation_id="updateReviewer",
+        description="Updates a reviewer for a given reviewer ID.",
+    ),
+    patch=extend_schema(
+        operation_id="partialUpdateReviewer",
+        description="Partially updates a reviewer for a given reviewer ID.",
+    ),
+    delete=extend_schema(
+        operation_id="deleteReviewer",
+        description="Deletes a reviewer from the database.",
+    ),
 )
-@api_view(["GET"])
-def getReviewers(request):
-    return handlers.reviewer.all_reviewers(request)
+class ReviewerDetails(RetrieveUpdateDestroyAPIView):
+    serializer_class = ReviewerSerializer
+    queryset = Reviewer.objects.all()
 
 
-@extend_schema(
-    operation_id="getReviewerById",
-    responses={200: ReviewerSerializer},
-    description="Returns a reviewer for a given reviewer ID.",
+@extend_schema_view(
+    get=extend_schema(
+        operation_id="getReviewers",
+        description="Returns all reviewers",
+    ),
+    post=extend_schema(
+        operation_id="addReviewer",
+        description="Adds a new reviewer to the database.",
+    ),
 )
-@api_view(["GET"])
-def getReviewerById(request, id):
-    return handlers.reviewer.reviewer_by_id(request, id)
-
-
-@extend_schema(
-    operation_id="addReviewer",
-    request=ReviewerSerializer,
-    description="Adds a new reviewer to the database.",
-)
-@api_view(["POST"])
-def addReviewer(request):
-    return handlers.reviewer.add_reviewer(request)
+class ReviewerListCreate(ListCreateAPIView):
+    serializer_class = ReviewerSerializer
+    queryset = Reviewer.objects.all()
 
 
 # ! File views
-@extend_schema(
-    operation_id="getFiles",
-    responses={200: FileSerializer(many=True)},
-    description="Returns all files.",
+@extend_schema_view(
+    get=extend_schema(
+        operation_id="getFileById",
+        description="Returns a file for a given file ID.",
+    ),
+    put=extend_schema(
+        operation_id="updateFile",
+        description="Updates a file for a given file ID.",
+    ),
+    patch=extend_schema(
+        operation_id="partialUpdateFile",
+        description="Updates a file for a given file ID.",
+    ),
+    delete=extend_schema(
+        operation_id="deleteReviewer",
+        description="Deletes a reviewer from the database.",
+    ),
 )
-@api_view(["GET"])
-def getFiles(request):
-    return handlers.files.all_files(request)
-
-
-@extend_schema(
-    operation_id="getFileById",
-    responses={200: FileSerializer},
-    description="Returns a file for a given file ID.",
-)
-@api_view(["GET"])
-def getFileById(request, id):
-    return handlers.files.file_by_id(request, id)
+class FileDetails(RetrieveUpdateAPIView):
+    serializer_class = FileSerializer
+    queryset = File.objects.all()
 
 
 @extend_schema(
@@ -186,13 +191,3 @@ def getFileById(request, id):
 @api_view(["GET"])
 def getFilesByReviewId(request, id):
     return handlers.files.files_by_review_id(request, id)
-
-
-@extend_schema(
-    operation_id="addFile",
-    request=FileSerializer,
-    description="Adds a new file to the database.",
-)
-@api_view(["POST"])
-def addFile(request):
-    return handlers.files.add_file(request)
