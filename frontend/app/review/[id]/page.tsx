@@ -1,12 +1,17 @@
 import Accordion from "@/app/components/accordion"
 import Chat from "@/app/components/chat"
 import Details from "@/app/components/details"
+import ErrorModal from "@/app/components/errormodal"
 import Metadatablock from "@/app/components/metadatablock"
 import Statistics from "@/app/components/statistics"
 import Suggest from "@/app/components/suggest"
 import { Dataset, Field } from "@/app/types"
 import { fetchFieldData } from "@/app/utils/loader"
 import backendRequest from "@/app/utils/requests"
+
+interface ErrorResponse {
+    detail: string
+}
 
 export default async function Review(
     {
@@ -21,7 +26,16 @@ export default async function Review(
     // Get the dataset
     const url = `http://easyreview-backend:8000/api/reviews/${params.id}/`
     const res = await backendRequest(url, "GET")
-    const dataset: Dataset = await res.json()
+    const dataset: Dataset | ErrorResponse = await res.json()
+
+    if ("detail" in dataset) {
+        const message = `The review of id ${params.id} could not be found. Please check the URL.`
+        return (
+            <div className="flex flex-row justify-center w-full">
+                <ErrorModal error={message} />
+            </div>
+        )
+    }
 
     let field: Field | null = null
 
@@ -50,7 +64,7 @@ export default async function Review(
             </div>
             <div className="col-span-2">
                 <div className="fixed h-screen">
-                    <div className="flex flex-col mr-28 w-96 gap-y-8">
+                    <div className="flex flex-col mr-28 w-96 gap-y-5">
                         <Statistics
                             reviewId={params.id}
                             site_url={dataset.site_url}
