@@ -20,6 +20,7 @@ urlpatterns = [
     path("reviews/fetch/", views.fetchDatasetFromDOI),
     path("reviews/<str:id>/stats/", views.getFieldCount),
     path("reviews/<str:id>/files/", views.getFilesByReviewId),
+    path("reviews/<str:id>/open/", views.getOpenFieldsByReviewId),
     path("reviews/doi/<str:doi>", views.getReviewsByDatasetDOI),
     path("reviews/reviewer/<str:id>", views.getReviewByReviewer),
     #

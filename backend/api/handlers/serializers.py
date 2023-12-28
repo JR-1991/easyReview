@@ -50,3 +50,9 @@ class ReviewerSerializer(serializers.ModelSerializer):
         model = Reviewer
         fields = "__all__"
         ordering = ["first_name", "last_name" "email"]
+
+
+class OpenFieldSerializer(serializers.Serializer):
+    name = serializers.CharField()
+    primitives = serializers.ListField(child=serializers.CharField())
+    compounds = serializers.ListField(child=serializers.CharField())

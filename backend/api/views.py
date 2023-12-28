@@ -1,24 +1,22 @@
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from rest_framework.decorators import api_view
 from rest_framework.generics import (
-    RetrieveUpdateDestroyAPIView,
+    ListAPIView,
     ListCreateAPIView,
     RetrieveUpdateAPIView,
-    ListAPIView,
+    RetrieveUpdateDestroyAPIView,
 )
 
-from reviews.models import Review, Field, Reviewer, File
-from .handlers.serializers import (
-    FileSerializer,
-    ReviewSerializer,
-    FieldSerializer,
-    ReviewerSerializer,
-)
+from reviews.models import Field, File, Review, Reviewer
 
 from . import handlers
-
-from .handlers.fetch import (
-    DATASET_FETCH_PARAMS,
+from .handlers.fetch import DATASET_FETCH_PARAMS
+from .handlers.serializers import (
+    FieldSerializer,
+    FileSerializer,
+    OpenFieldSerializer,
+    ReviewerSerializer,
+    ReviewSerializer,
 )
 
 
@@ -77,6 +75,16 @@ class ReviewListCreate(ListAPIView):
 @api_view(["GET"])
 def getReviewsByDatasetDOI(request, doi):
     return handlers.review.review_by_doi(request, doi)
+
+
+@extend_schema(
+    operation_id="getOpenFieldsByReviewId",
+    description="Returns all open fields for a given review ID.",
+    responses={200: OpenFieldSerializer(many=True)},
+)
+@api_view(["GET"])
+def getOpenFieldsByReviewId(request, id):
+    return handlers.openfields.fetch_open_metadatablock_fields_for_review(id)
 
 
 @extend_schema(
