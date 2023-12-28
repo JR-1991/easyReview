@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { Field } from "../types";
-import { updateField } from "../utils/updaters";
+import { Field } from "../../../types";
+import { updateField } from "../../../utils/updaters";
 import moment from 'moment'
 import { usePathname, useRouter } from "next/navigation";
-import cardStyle from "../utils/styles";
+import cardStyle from "../../../utils/styles";
 
 
 export default function Suggest(

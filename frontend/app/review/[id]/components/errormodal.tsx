@@ -1,4 +1,4 @@
-import cardStyle from "../utils/styles"
+import cardStyle from "../../../utils/styles"
 
 export default function ErrorModal(
     {

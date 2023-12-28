@@ -1,9 +1,9 @@
 "use client";
 
-import { Field } from "../types";
+import { Field } from "../../../types";
 import { stripHtml } from "string-strip-html";
-import { cleanAndCapitalize } from "../utils/stringfuns";
-import cardStyle from "../utils/styles";
+import { cleanAndCapitalize } from "../../../utils/stringfuns";
+import cardStyle from "../../../utils/styles";
 
 function FieldHistory(
     {
@@ -49,13 +49,13 @@ export default function Details(
 
     return (
         <div className={cardStyle + "p-2 stats stats-vertical overflow-auto"}>
-            <div className="h-auto max-h-full overflow-auto break-words stat">
+            <div className="h-auto overflow-auto break-words stat">
                 <div className="flex items-center">
                     <div className="text-lg stat-value">{cleanAndCapitalize(field.name)}</div>
                 </div>
                 <p className="text-xs text-gray-400">{field.description}</p>
                 <hr className="my-2" />
-                <div className="grid grid-flow-dense">
+                <div className="grid">
                     {Object.entries(field.history).map(
                         ([timestamp, value]) => (
                             <FieldHistory timestamp={timestamp} value={value} fieldName={field.name} />

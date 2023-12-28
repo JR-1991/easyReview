@@ -3,9 +3,9 @@
 // @ts-ignore
 import CryptoJS from "crypto-js";
 import { useEffect } from "react";
-import useReviewStore from "../stores/reviewstore";
-import { fetchProgress } from "../utils/statsloader";
-import cardStyle from "../utils/styles";
+import useReviewStore from "../../../stores/reviewstore";
+import { fetchProgress } from "../../../utils/statsloader";
+import cardStyle from "../../../utils/styles";
 
 
 export default function Statistics(

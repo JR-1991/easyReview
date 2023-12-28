@@ -1,4 +1,4 @@
-import { Metadatablock as MetadatablockType } from "../types"
+import { Metadatablock as MetadatablockType } from "../../../types"
 import Compound from "./compound"
 import Divider from "./divider"
 import Primitive from "./primitive"

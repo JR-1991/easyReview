@@ -4,11 +4,12 @@ import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { VscCheck, VscChromeClose, VscEdit, VscExport, VscFeedback } from "react-icons/vsc";
 import { stripHtml } from "string-strip-html";
-import useReviewStore from "../stores/reviewstore";
-import { Field as FieldType } from "../types";
-import { fetchProgress } from "../utils/statsloader";
-import { updateField } from "../utils/updaters";
+import useReviewStore from "../../../stores/reviewstore";
+import { Field as FieldType } from "../../../types";
+import { fetchProgress } from "../../../utils/statsloader";
+import { updateField } from "../../../utils/updaters";
 import Context from "./contextmenu";
+import cardStyle from "../../../utils/styles";
 
 export default function FieldWrapper(
     {
@@ -71,9 +72,7 @@ export default function FieldWrapper(
     }
 
     const menu = (
-        <ul
-            className={"border w-36 menu shadow-md bg-white rounded-xl"}
-        >
+        <ul className={`${cardStyle} w-36 menu shadow-md bg-white rounded-xl`}>
             <li>
                 <p onClick={() => { handleUpdate(true) }}>
                     <VscCheck />Accept
@@ -107,7 +106,7 @@ export default function FieldWrapper(
         <>
             <Context menu={menu}>
                 <div
-                    className="pr-2 transition-all duration-75 ease-out rounded-md hover:bg-base-200 "
+                    className="py-1 pr-2 transition-all duration-75 ease-out rounded-md hover:bg-base-200 "
                     onClick={handleLeftClick}
                     onContextMenu={() => { setClicked(true) }}
                 >

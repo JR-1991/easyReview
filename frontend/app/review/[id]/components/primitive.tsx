@@ -1,7 +1,7 @@
 "use client";
 
-import { cleanAndCapitalize } from "../utils/stringfuns"
-import { Field as FieldType } from "../types"
+import { cleanAndCapitalize } from "../../../utils/stringfuns"
+import { Field as FieldType } from "../../../types"
 import { stripHtml } from "string-strip-html";
 import { useState } from "react";
 import FieldWrapper from "./fieldwrapper";

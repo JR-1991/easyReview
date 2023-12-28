@@ -1,8 +1,8 @@
 "use client";
 
-import { capitalizeFirstLetter } from "../utils/stringfuns";
+import { capitalizeFirstLetter } from "../../../utils/stringfuns";
 import { VscSymbolField } from "react-icons/vsc";
-import cardStyle from "../utils/styles";
+import cardStyle from "../../../utils/styles";
 
 export default function Accordion(
     {
