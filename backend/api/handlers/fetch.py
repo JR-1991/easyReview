@@ -10,10 +10,16 @@ from reviews.models import Review, Metadatablock, Compound, Field
 
 DATASET_FETCH_PARAMS = [
     OpenApiParameter(
-        name="site_url", description="URL to the dataset", required=True, type=str
+        name="site_url",
+        description="URL to the dataset",
+        required=True,
+        type=str,
     ),
     OpenApiParameter(
-        name="doi", description="DOI of the dataset", required=True, type=str
+        name="doi",
+        description="DOI of the dataset",
+        required=True,
+        type=str,
     ),
     OpenApiParameter(
         name="api_token",
