@@ -1,5 +1,5 @@
 import './globals.css'
-import Header from '@/app/components/header'
+import Header from '@/app/review/[id]/components/header'
 
 export const metadata = {
   title: 'EasyReview',
@@ -16,7 +16,7 @@ export default function RootLayout({
       <body
         className="z-0 min-h-screen pattern-wavy pattern-slate-200 pattern-bg-white pattern-size-32 pattern-opacity-100"
       >
-        <div className="z-50 mx-40">
+        <div className="z-50 md:mx-40">
           <Header />
           <main>
             {children}
