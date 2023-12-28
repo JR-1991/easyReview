@@ -1,10 +1,10 @@
-import Accordion from "@/app/components/accordion"
-import Chat from "@/app/components/chat"
-import Details from "@/app/components/details"
-import ErrorModal from "@/app/components/errormodal"
-import Metadatablock from "@/app/components/metadatablock"
-import Statistics from "@/app/components/statistics"
-import Suggest from "@/app/components/suggest"
+import Accordion from "@/app/review/[id]/components/accordion"
+import Chat from "@/app/review/[id]/components/chat"
+import Details from "@/app/review/[id]/components/details"
+import ErrorModal from "@/app/review/[id]/components/errormodal"
+import Metadatablock from "@/app/review/[id]/components/metadatablock"
+import Statistics from "@/app/review/[id]/components/statistics"
+import Suggest from "@/app/review/[id]/components/suggest"
 import { Dataset, Field } from "@/app/types"
 import { fetchFieldData } from "@/app/utils/loader"
 import backendRequest from "@/app/utils/requests"
@@ -63,8 +63,8 @@ export default async function Review(
                 })}
             </div>
             <div className="col-span-2">
-                <div className="fixed h-screen">
-                    <div className="flex flex-col mr-28 w-96 gap-y-5">
+                <div className="fixed h-screen md:w-full sm:w-auto">
+                    <div className="flex flex-col md:w-auto md:max-w-lg sm:w-3/4 sm:max-w-sm gap-y-5">
                         <Statistics
                             reviewId={params.id}
                             site_url={dataset.site_url}
