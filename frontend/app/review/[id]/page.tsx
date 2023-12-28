@@ -8,6 +8,7 @@ import Suggest from "@/app/review/[id]/components/suggest"
 import { Dataset, Field } from "@/app/types"
 import { fetchFieldData } from "@/app/utils/loader"
 import backendRequest from "@/app/utils/requests"
+import { openFieldsAction } from "./actions/openfieldaction"
 
 interface ErrorResponse {
     detail: string
@@ -47,6 +48,9 @@ export default async function Review(
             searchParams.field_id, fieldURL
         )
     }
+
+    // Fetch open fields
+    const openFields = await openFieldsAction(dataset.id)
 
     return (
         <div className="grid grid-cols-12 gap-5">
