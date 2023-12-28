@@ -1,3 +1,4 @@
+// @ts-ignore
 import CryptoJS from "crypto-js";
 import { redirect } from 'next/navigation';
 import getDataset, { ReviewQuery } from "./utils/loader";
